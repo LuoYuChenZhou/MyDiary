@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>日记内页</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="../style/js/commonStyle.js"></script>
+
+<style type="text/css">
+@font-face {
+	font-family: 'qingshuti';
+	src: url('../style/font/qingshuti.otf');
+}
+
+body {
+	background-color: black;
+	overflow: hidden;
+}
+
+.baseDiv {
+	width: 1100px;
+	height: 715px;
+	background: url('../style/picture/秋叶.png') no-repeat;
+	background-size: 1100px;
+	margin: auto;
+	border-radius: 10px;
+}
+
+#contextDiv {
+	width: 594px;
+	height: 300px;
+	position: relative;
+	top: 35%;
+	left: 25%;
+	font-size: 17px;
+}
+
+pre {
+	font-family: 'qingshuti';
+}
+</style>
+
+</head>
+
+<body>
+	<div class="baseDiv">
+		<div id="contextDiv">
+			<pre id="p1">
+	  测试字符cszf
+			     sdfa 
+			</pre>
+			<pre id="p2">
+			</pre>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript">
+	$("#p2").text($("#p1").text());
+</script>
+</html>

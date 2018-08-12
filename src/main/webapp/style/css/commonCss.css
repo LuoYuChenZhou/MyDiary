@@ -1,0 +1,7 @@
+.icon {
+	width: 1.4em;
+	height: 1.4em;/* 两个一起设置才会改变大小 */
+	vertical-align: -0.35em;/* 调节后续文字的垂直位置 */
+	fill: currentColor;
+	overflow: hidden;
+}

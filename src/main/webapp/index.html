@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>登录页</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="style/js/commonStyle.js"></script>
+<style type="text/css">
+@font-face {
+	font-family: 'qingshuti';
+	src: url('style/font/qingshuti.otf');
+}
+
+b {
+	font-family: 'qingshuti';
+}
+
+body {
+	overflow: hidden;
+	background: url('style/picture/login.jpg') no-repeat;
+	background-size: 100%;
+}
+
+.contextDiv {
+	width: 420px;
+	height: 230px;
+	margin: 115px auto 0;
+}
+
+.spanDiv {
+	color: white;
+	text-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+	font-size: 30px;
+	margin: auto;
+	width: 367px;
+}
+
+input[type="text"], input[type="password"] {
+	color: #00d0ff;
+	padding-left: 10px;
+	width: 350px;
+	height: 35px;
+	border: 1px solid rgb(204, 204, 204);
+	display: block;
+	border-radius: 2px;
+	border: 1px solid rgba(78, 48, 67, 0.8);
+	background: rgba(0, 0, 0, 0.15);
+	margin: 20px auto 0;
+	width: 350px;
+	padding-left: 10px;
+}
+
+input[type="text"]:FOCUS, input[type="password"]:FOCUS {
+	transition: all 0.3s ease-out;
+	box-shadow: 0 0 15px #888888;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+#msgDiv {
+	margin: 10px 0;
+	padding-left: 27px;
+}
+
+#msgDiv span {
+	color: #ff7cfb;
+	text-align: center;
+	float: left;
+	width: 375px;
+}
+
+.triangle {
+	width: 0;
+	height: 0;
+	border-width: 15px;
+	border-style: solid;
+}
+
+.btnDiv {
+	margin: 20px auto 0;
+	height: 63px;
+	width: 173px;
+}
+
+.staticWidth {
+	width: 200px;
+	height: 63px;
+	width: 50px;
+	height: 63px;
+	display: inline-block;
+}
+
+.iconWidth {
+	display: inline-block;
+	width: 63px;
+	height: 63px;
+}
+
+.btnIcon {
+	display: inline-block;
+	font-size: 45px;
+	vertical-align: 0;
+}
+
+.t_left {
+	border-color: transparent transparent transparent #AAA094;
+	margin: 10px 0 0 30px;
+}
+
+.t_right {
+	border-color: transparent #AAA094 transparent transparent;
+	margin: 10px 0 0 -10px;
+}
+</style>
+
+</head>
+
+<body>
+	<div class="contextDiv">
+		<!-- 顶部提示框 -->
+		<div class="spanDiv">
+			<svg class="icon" aria-hidden="true">
+ 				<use xlink:href="#icon-bijiben"></use>
+			</svg>
+			<b>欢迎登录时光印象日记本</b>
+		</div>
+
+		<div class="inputDiv">
+			<!-- 用户名输入框 -->
+			<input id="userName" type="text" placeholder="please input userName">
+			<!-- 密码输入框 -->
+			<input id="password" type="password"
+				placeholder="please input password">
+		</div>
+		<div id="msgDiv">
+			<span></span>
+		</div>
+		<!-- 登录按钮 -->
+		<div class="btnDiv">
+			<div class="staticWidth">
+				<div class="triangle t_left"></div>
+			</div>
+			<div class="iconWidth">
+				<svg class="icon btnIcon" aria-hidden="true">
+	 				<use xlink:href="#icon-yaoshi2"></use>
+				</svg>
+			</div>
+			<div class="staticWidth">
+				<div class="triangle t_right"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+
+	$(".triangle").hide();
+
+	$(".btnDiv").click(function() {
+		let userName = $("#userName").val();
+		let password = $("#password").val();
+		if (fieldIsNull(userName) || fieldIsNull(password)) {
+			$("#msgDiv").children("span").text(">>>>>请输入用户名和密码<<<<<");
+			return;
+		}
+
+		$.post(preUrl + "/Login/loginCheck.do",
+			{
+				userName : userName,
+				password : password
+			},
+			function(data) {
+				if (data.status === 200) {
+					alert(data.msg);
+				/* window.location.href = "view/userList.jsp"; */
+				} else {
+					$("#msgDiv").children("span").text(">>>>>" + data.msg + "<<<<<");
+				}
+			});
+	});
+
+	$(".btnIcon").hover(function() {
+		$(".triangle").show();
+	});
+
+	$(".btnIcon").mouseleave(function() {
+		$(".triangle").hide();
+	});
+</script>
+</html>
